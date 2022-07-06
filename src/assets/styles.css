@@ -75,18 +75,12 @@
   .filters span {
     margin: 0 8px;
     font-size: 17px;
-    color: #444444;
     cursor: pointer;
   }
   
   .filters span:first-child {
     margin-left: 0;
   }
-  
-  .filters span.active {
-    color: #f12711;
-  }
-  
   .clear-btn {
     border: none;
     opacity: 0.6;
@@ -97,11 +91,14 @@
     padding: 7px 13px;
     border-radius: 4px;
     letter-spacing: 0.3px;
-    pointer-events: none;
     transition: transform 0.25s ease;
     background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
   }
-  
+
+  .text-body{
+    cursor: pointer;
+    user-select: none;
+  }
   .clear-btn.active {
     opacity: 0.9;
     pointer-events: auto;
@@ -135,7 +132,11 @@
     background: #e6e6e6;
     border-radius: 25px;
   }
-  
+
+  .active{
+    color: orange;
+    border-bottom: 3px solid orange;
+  }
   .task-box .task {
     list-style: none;
     font-size: 17px;

@@ -1,26 +1,50 @@
 <template>
 
- <div class="wrapper">
-    <div class="task-input">
-      <ion-icon name="create-outline"></ion-icon>
-      <input type="text" placeholder="Add a New Task + Enter">
-    </div>
-    <div class="controls">
-      <div class="filters">
-        <span class="active" id="all">All</span>
-        <span id="pending">Pending</span>
-        <span id="completed">Completed</span>
-      </div>
-      <button class="clear-btn">Clear All</button>
-    </div>
-    <ul class="task-box"></ul>
+  <div class="wrapper">
+    <i-todo @addTodo="addTodo" />
+    <f-todo @changeTab="changeTab" @clearTodos="clearTodos" />
+    <l-todo @toggleComplete="toggleComplete" :tab="tab" :todos="todos" />
   </div>
 
 </template>
 
 
 <script>
+import FilterTodoVue from './components/FilterTodo.vue'
+import InputTodoVue from './components/InputTodo.vue'
+import ListTodoVue from './components/ListTodo.vue'
 export default {
+  data() {
+    return {
+      todos: [],
+      tab: 'all'
+    }
+  },
+  components: {
+    "iTodo": InputTodoVue,
+    "fTodo": FilterTodoVue,
+    "lTodo": ListTodoVue
+  },
 
+  methods: {
+    addTodo(inputText) {
+      this.todos.push(inputText)
+    },
+
+    clearTodos() {
+      this.todos = []
+    },
+    toggleComplete(id) {
+      this.todos = this.todos.map(todo => {
+        if (todo.id === id) {
+          todo.complete = !todo.complete
+        }
+        return todo;
+      })
+    },
+    changeTab(value) {
+      this.tab = value
+    }
+  }
 }
 </script>
